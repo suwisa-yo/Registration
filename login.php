@@ -1,12 +1,8 @@
-
 <?php
-$con= mysqli_connect("localhost","root","password","mydb") or die("Error: " . mysqli_error($con));
-mysqli_query($con, "SET NAMES 'utf8' "); 
-?>
+include 'db_reg.php';
+$conn = OpenCon();
 
-<?php
-$con= mysqli_connect("localhost","root","password","mydb") or die("Error: " . mysqli_error($con));
-mysqli_query($con, "SET NAMES 'utf8' "); 
+CloseCon($conn);
 ?>
 <style >
 *{
@@ -139,11 +135,11 @@ h1{
         <div class="login-form">
             <h1>Login</h1>
             <div class="form-group ">
-              <input type="text" class="form-control" placeholder="Username " id="Username">
+              <input type="text" class="form-control" placeholder="Username " id="username">
               <i class="fa fa-user"></i>
             </div>
             <div class="form-group log-status">
-              <input type="password" class="form-control" placeholder="Password" id="Password">
+              <input type="password" class="form-control" placeholder="Password" id="password">
               <i class="fa fa-lock"></i>
             </div>
              <span class="alert">Invalid Credentials</span>
