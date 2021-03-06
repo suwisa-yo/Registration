@@ -1,9 +1,6 @@
-<?php
-include 'db_reg.php';
-$conn = OpenCon();
-
-CloseCon($conn);
-?>
+<html class=""><head>
+<head>
+<title></title>
 <style >
 *{
   box-sizing:border-box;
@@ -131,24 +128,25 @@ h1{
 
 </style></head><body>
         <!-- LOGIN MODULE -->
-        
+        <form name="form1" method="post" action="check_login.php">
         <div class="login-form">
             <h1>Login</h1>
             <div class="form-group ">
-              <input type="text" class="form-control" placeholder="Username " id="username">
+              <input type="text" name="username"class="form-control" placeholder="Username " id="username">
               <i class="fa fa-user"></i>
             </div>
             <div class="form-group log-status">
-              <input type="password" class="form-control" placeholder="Password" id="password">
+              <input type="password" name="txtpassword"class="form-control" placeholder="Password" id="password">
               <i class="fa fa-lock"></i>
             </div>
              <span class="alert">Invalid Credentials</span>
             
-            <button type="button" class="log-btn" >Log in</button>
+            <button type="Submit" class="log-btn" >Log in</button>
             
            
           </div>
-       
+          </form >
+  
        
        <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
   

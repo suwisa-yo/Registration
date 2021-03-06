@@ -1,27 +1,28 @@
 <?php
-$mysqli = new mysqli("localhost","root","","it");
-
-// Check connection
-if ($mysqli -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-}
-?>
-<?php
-session_start();
-	if($_SESSION['id'] == "")
+	session_start();
+	if($_SESSION['username'] == "")
 	{
 		echo "Please Login!";
-                header("location:index.php");
-//		exit();
-	}
-
-	if($_SESSION['Status'] != "USER" )
-	{
-		echo "This page for User only!";
 		exit();
 	}
-	?>
+
+	if($_SESSION['status'] != "user")
+	{
+		echo "This page for Admin only!";
+		exit();
+	}	
+	
+	$serverName = "localhost";
+	$userName = "root";
+	$userPassword = "";
+	$dbName = "registration";
+
+	$objCon = mysqli_connect($serverName,$userName,$userPassword,$dbName);
+
+	$strSQL = "SELECT * FROM user WHERE username = '".$_SESSION['username']."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,17 +1,10 @@
 <?php
-function OpenCon()
- {
- $dbhost = "localhost";
- $dbuser = "root";
- $dbpass = "";
- $db = "registration";
- $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
- 
- return $conn;
- }
-function CloseCon($conn)
- {
- $conn -> close();
- }
-   
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password);
+
+
 ?>
