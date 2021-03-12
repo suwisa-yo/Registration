@@ -1,3 +1,4 @@
+<?php include('db_reg.php'); ?>
 <?php
 	session_start();
 	if($_SESSION['username'] == "")
@@ -8,70 +9,20 @@
 
 	if($_SESSION['status'] != "user")
 	{
-		echo "This page for Admin only!";
+		echo "This page for User only!";
 		exit();
 	}	
 	
-	$serverName = "localhost";
-	$userName = "root";
-	$userPassword = "";
-	$dbName = "registration";
-
-	$objCon = mysqli_connect($serverName,$userName,$userPassword,$dbName);
-
-	$strSQL = "SELECT * FROM user WHERE username = '".$_SESSION['username']."' ";
-	$objQuery = mysqli_query($objCon,$strSQL);
-	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 	
-if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-	//to fully log out a visitor we need to clear the session varialbles
-  //  $_SESSION['MM_Username'] = NULL;
-  //  $_SESSION['MM_UserGroup'] = NULL;
-  //  $_SESSION['PrevUrl'] = NULL;
-  //  unset($_SESSION['MM_Username']);
-  //  unset($_SESSION['MM_UserGroup']);
-  //  unset($_SESSION['PrevUrl']);
-  session_start();
-	  session_destroy();
-	  header("location:index.php");
-		  
-	$logoutGoTo = "logout.php";
-	if ($logoutGoTo) {
-	  header("Location: $logoutGoTo");
-	  exit;
-	}
-  }
-  if (!function_exists("GetSQLValueString")) {
-  function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-  {
-	if (PHP_VERSION < 6) {
-	  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-	}
-  
-	$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-  
-	switch ($theType) {
-	  case "text":
-		$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-		break;    
-	  case "long":
-	  case "int":
-		$theValue = ($theValue != "") ? intval($theValue) : "NULL";
-		break;
-	  case "double":
-		$theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-		break;
-	  case "date":
-		$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-		break;
-	  case "defined":
-		$theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-		break;
-	}
-	return $theValue;
-  }
-  }
 ?>
+
+<?php 
+ 
+if (!$_SESSION["username"]){  //check session
+ 
+	
+ 
+}else{?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -224,7 +175,8 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						
 								<span class="user-info">
-									<small>Welcome, <?php echo $row_username['username']; ?></small>
+									<small>Welcome,<br>
+									<?php echo($_SESSION["username"]);?> </small>
 									
 								</span>
 
@@ -249,7 +201,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="logout.php">
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -788,16 +740,8 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
 									</div><!-- /.col -->
 								</div><!-- /.row -->
 
-								<div class="hr hr32 hr-dotted"></div>
-
-								
-		
-
-												</div><!-- /.widget-main -->
-											</div><!-- /.widget-body -->
-										</div><!-- /.widget-box -->
-									</div><!-- /.col -->
-								</div><!-- /.row -->
+							
+										
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
@@ -807,24 +751,19 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
 			</div><!-- /.main-content -->
 
 			<div class="footer">
-			
-                        <div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Shinba Iron Works (Thailand) Co., Ltd.</span>
-					
+						<span class="blue bolder">Shinba Iron Works (Thailand) Co., Ltd.</span>
 						</span>
 
 						&nbsp; &nbsp;
-						
+					
 					</div>
 				</div>
 			</div>
 
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-			</a>
+			
 		</div><!-- /.main-container -->
 
 		<!-- basic scripts -->
@@ -1080,3 +1019,4 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
 		</script>
 	</body>
 </html>
+<?php } ?>
