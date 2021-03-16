@@ -84,8 +84,7 @@
 				<div class="navbar-header pull-left">
 					<a href="index.html" class="navbar-brand">
 						<small>
-							<i class="fa fa-leaf"></i>
-							Ace Admin
+							SIWT
 						</small>
 					</a>
 				</div>
@@ -230,7 +229,7 @@
 
 				<ul class="nav nav-list">
 					<li class="active">
-						<a href="index.html">
+						<a href="index.php">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -449,7 +448,7 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Home</a>
 							</li>
-							<li class="active">Dashboard</li>
+							<li class="active"></li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -556,7 +555,7 @@
 									</strong>
 								</div>
 
-								<form class="form-horizontal" role="form">
+								<form class="form-horizontal" action="save_computer.php" method="post" name="form1">
 									<div class="form-group"><!--Serial number-->
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Serial number </label>
 
@@ -576,73 +575,37 @@
 							
 											<label class="col-sm-2 control-label no-padding-right" for="form-field-1" class="col-xs-8 col-sm-4"> Storage  &nbsp;</label>
 											<div class="col-xs-5 col-sm-4">
-							
-												<select class="form-control" id="form-field-select-1">
-													<option value=""></option>
-													<option value="AL">Alabama</option>
-													<option value="AK">Alaska</option>
-													<option value="AZ">Arizona</option>
-													<option value="AR">Arkansas</option>
-													<option value="CA">California</option>
-													<option value="CO">Colorado</option>
-													<option value="CT">Connecticut</option>
-													<option value="DE">Delaware</option>
-													<option value="FL">Florida</option>
-													<option value="GA">Georgia</option>
-													<option value="HI">Hawaii</option>
-													<option value="ID">Idaho</option>
-												
-												
-												</select>
+
+												<select class="form-control" >
+													
+													</select>
+												</div>
+									</div>
 									</div><!--Main Memory,Storage-->
 									<div class="form-group"><!--Serial number-->
-										
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Serial number </label>
 
-									
-									
 										<div class="col-sm-8">
+											<input type="text" id="form-field-1" placeholder="Serial number" class="col-xs-8 col-sm-4" />
+								
 											<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> Detail Storage  &nbsp;</label>
-											<input type="text" id="form-field-1" placeholder="Detail Storage" class="col-xs-8 col-sm-4" />
+											<input type="text" id="form-field-1" placeholder=" Detail Storage" class="col-xs-8 col-sm-4" />
 										</div>
-									</div><!--Main Memory,Storage-->
+									</div>
+									<div class="form-group"><!--Serial number-->
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Date </label>
 
-
-									
-									<div class="row">
-										<div class="col-sm-4">
-											<div class="widget-box">
-											
-													<div class="widget-main">
-														<label for="id-date-picker-1">Date Picker</label>
-
-														<div class="row">
-															<div class="col-xs-8 col-sm-11">
-																<div class="input-group">
-																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+										<div class="col-sm-2">
+										<div class="input-group">
+										<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
 																	<span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
+																		<i class="fa fa-calendar bigger-90"></i>
 																	</span>
-																</div>
-															</div>
-														</div>
-
-												
-									
-														
+								
 										
-
-												
+										</div>
+									</div>
 								
-											
-													
-
-														
-
-													
-								
-											</div>
-										</div><!-- /.span -->
-									</div><!-- /.row -->
 
 
 								<div id="modal-form" class="modal" tabindex="-1">
@@ -692,32 +655,7 @@
 																	<option value="MI">Michigan</option>
 																	<option value="MN">Minnesota</option>
 																	<option value="MS">Mississippi</option>
-																	<option value="MO">Missouri</option>
-																	<option value="MT">Montana</option>
-																	<option value="NE">Nebraska</option>
-																	<option value="NV">Nevada</option>
-																	<option value="NH">New Hampshire</option>
-																	<option value="NJ">New Jersey</option>
-																	<option value="NM">New Mexico</option>
-																	<option value="NY">New York</option>
-																	<option value="NC">North Carolina</option>
-																	<option value="ND">North Dakota</option>
-																	<option value="OH">Ohio</option>
-																	<option value="OK">Oklahoma</option>
-																	<option value="OR">Oregon</option>
-																	<option value="PA">Pennsylvania</option>
-																	<option value="RI">Rhode Island</option>
-																	<option value="SC">South Carolina</option>
-																	<option value="SD">South Dakota</option>
-																	<option value="TN">Tennessee</option>
-																	<option value="TX">Texas</option>
-																	<option value="UT">Utah</option>
-																	<option value="VT">Vermont</option>
-																	<option value="VA">Virginia</option>
-																	<option value="WA">Washington</option>
-																	<option value="WV">West Virginia</option>
-																	<option value="WI">Wisconsin</option>
-																	<option value="WY">Wyoming</option>
+																
 																</select>
 															</div>
 														</div>
@@ -781,7 +719,6 @@
 										</div>
 									</div>
 
-								
 
 			<div class="footer">
 				<div class="footer-inner">
@@ -795,9 +732,8 @@
 					</div>
 				</div>
 			</div>
-
-		
 		</div><!-- /.main-container -->
+	
 
 		<!-- basic scripts -->
 
@@ -1277,6 +1213,10 @@
 		</script>
 	</body>
 </html>
-
+<?php
+{
+	
+}
+?>
 
 							
