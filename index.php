@@ -663,11 +663,11 @@ if (!$_SESSION["username"]){  //check session
 													Traffic Sources
 												</h5>
 
-												<div class="widget-toolbar no-border">
+												<div class="widget-toolbar no-border">  
 													<div class="inline dropdown-hover">
 														<button class="btn btn-minier btn-primary">
 															This Week
-															<i class="ace-icon fa fa-angle-down icon-on-right bigger-110"></i>
+															<i class="ace-icon fa fa-angle-down icon-on-right bigger-120   "></i>
 														</button>
 
 														<ul class="dropdown-menu dropdown-menu-right dropdown-125 dropdown-lighter dropdown-close dropdown-caret">
@@ -734,11 +734,11 @@ if (!$_SESSION["username"]){  //check session
 															<h4 class="bigger pull-right">1,050</h4>
 														</div>
 													</div>
-												</div><!-- /.widget-main -->
-											</div><!-- /.widget-body -->
-										</div><!-- /.widget-box -->
-									</div><!-- /.col -->
-								</div><!-- /.row -->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
 							
 										
