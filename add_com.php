@@ -1,5 +1,6 @@
 <?php require_once('db_reg.php'); ?>
 <?php
+date_default_timezone_set('Asia/Bangkok');
 	session_start();
 	if($_SESSION['username'] == "")
 	{
@@ -13,7 +14,7 @@
 		exit();
 	}	
 	
-	$serverName = "localhost";
+	$serverName = "localhost";   
 	$userName = "root";
 	$userPassword = "";
 	$dbName = "registration";
@@ -23,21 +24,16 @@
 	$strSQL = "SELECT * FROM user WHERE username = '".$_SESSION['username']."' ";
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
-
-
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
     <title> Computer</title>
 
-    <meta name="description" content="overview &amp; stats" />
+    <meta name="description" content="overview &amp; stats" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
@@ -104,61 +100,8 @@
                         <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 
 
-                            <li class="dropdown-content">
-                                <ul class="dropdown-menu dropdown-navbar">
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Software Update</span>
-                                                <span class="pull-right">65%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini">
-                                                <div style="width:65%" class="progress-bar"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Hardware Upgrade</span>
-                                                <span class="pull-right">35%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini">
-                                                <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Unit Testing</span>
-                                                <span class="pull-right">15%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini">
-                                                <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Bug Fixes</span>
-                                                <span class="pull-right">90%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini progress-striped active">
-                                                <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            
+                                
 
                             <li class="dropdown-footer">
                                 <a href="#">
@@ -168,28 +111,14 @@
                             </li>
                         </ul>
                     </li>
-
-
-
-
-
-
-
-
                     <li class="light-blue dropdown-modal">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-
-
                             <span class="user-info">
                                 <small>Welcome,<br>
                                     <?php echo($_SESSION["username"]);?> </small>
-
-
                             </span>
-
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
-
                         <ul
                             class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>
@@ -198,16 +127,13 @@
                                     Settings
                                 </a>
                             </li>
-
                             <li>
                                 <a href="profile.html">
-                                    <i class="ace-icon fa fa-user"></i>
+                                <i class="ace-icon fa fa-user"></i>
                                     Profile
                                 </a>
                             </li>
-
                             <li class="divider"></li>
-
                             <li>
                                 <a href="#">
                                     <i class="ace-icon fa fa-power-off"></i>
@@ -374,20 +300,13 @@
                         <li class="">
                             <a href="tables.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Simple &amp; Dynamic
+                      
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
-                        <li class="">
-                            <a href="jqgrid.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                jqGrid plugin
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
+                        
                     </ul>
                 </li>
 
@@ -463,7 +382,7 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="active"></li>
-                    </ul><!-- /.breadcrumb -->
+                    </ul>
 
                     <div class="nav-search" id="nav-search">
                         <form class="form-search">
@@ -473,7 +392,7 @@
                                 <i class="ace-icon fa fa-search nav-search-icon"></i>
                             </span>
                         </form>
-                    </div><!-- /.nav-search -->
+                    </div>
                 </div>
 
                 <div class="page-content">
@@ -562,14 +481,14 @@
                             <small>(1.0)</small>
                         </strong>
                     </div>
-					<form action="save_computer.php" method="post">
+                    <form id="formRegister" name="formRegister" method="post"  action="save_computer.php" >
                         <div class="form-group">
                             <!--Serial number-->
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Serial number
                             </label>
 
                             <div class="col-sm-8">
-                                <input type="text" id="form-field-1" placeholder="Serial number"
+                                <input type="text" name="serial_computer" id="serial_computer" placeholder="Serial number"
                                     class="col-xs-8 col-sm-4" />
 
                                 <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> Brand
@@ -581,6 +500,7 @@
 
                         <div class="form-group">
                             <!--Main Memory-->
+    
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Main Memory
                             </label>
 
@@ -612,37 +532,16 @@
 									<option value="<?=$rs['storage_id']?>"><?=$rs['storage_name']?></option>
 									<?php } ?>    
 									</select>
-
-
-
                                 </div>
                             </div>
                         </div>
-                        <!--Main Memory,Storage-->
+                      
                         <div class="form-group">
-                            <!--Serial number-->
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Serial number
-                            </label>
-
-                            <div class="col-sm-8">
-                                <input type="text" id="form-field-1" placeholder="Serial number"
-                                    class="col-xs-8 col-sm-4" />
-
-                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> Detail
-                                    Storage &nbsp;</label>
-                                <input type="text" id="form-field-1" placeholder=" Detail Storage"
-                                    class="col-xs-8 col-sm-4" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <!--Serial number-->
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Computer
                                 Name</label>
-
                             <div class="col-sm-8">
                                 <input type="text" id="form-field-1" placeholder="Computer Name"
                                     class="col-xs-8 col-sm-4" />
-
                                 <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> Assess No.
                                     &nbsp;</label>
                                 <input type="text" id="form-field-1" placeholder="Assess No"
@@ -650,10 +549,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <!--Serial number-->
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Start Date
                             </label>
-
                             <div class="col-sm-2">
                                 <div class="input-group">
                                     <input class="form-control date-picker" id="id-date-picker-1" type="text"
@@ -661,18 +558,12 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar bigger-90"></i>
                                     </span>
-
-
                                 </div>
                             </div>
-
-
-
-
                             <p> <br> &nbsp;&nbsp; &nbsp;</br></p>
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-5 col-md-9">
-                                    <button class="btn btn-info" type="button">
+                                    <button class="btn btn-info"   type="submit" name="button" id="button" >
                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                         Submit
                                     </button>
@@ -684,7 +575,6 @@
                                     </button>
                                 </div>
                             </div>
-
                             <p> <br>&nbsp; &nbsp;</br></p>
                             <div class="footer">
                                 <div class="footer-inner">
@@ -692,36 +582,17 @@
                                         <span class="bigger-120">
                                             <span class="blue bolder">Shinba Iron Works (Thailand) Co., Ltd.</span>
                                         </span>
-
                                         &nbsp; &nbsp;
-
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- /.main-container -->
-
-
-                        <!-- basic scripts -->
-
-                        <!--[if !IE]> -->
+                        </div>
                         <script src="assets/js/jquery-2.1.4.min.js"></script>
-
-                        <!-- <![endif]-->
-
-                        <!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
                         <script type="text/javascript">
                         if ('ontouchstart' in document.documentElement) document.write(
                             "<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
                         </script>
                         <script src="assets/js/bootstrap.min.js"></script>
-
-                        <!-- page specific plugin scripts -->
-
-                        <!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
-		<![endif]-->
                         <script src="assets/js/jquery-ui.custom.min.js"></script>
                         <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
                         <script src="assets/js/chosen.jquery.min.js"></script>
@@ -737,12 +608,8 @@
                         <script src="assets/js/jquery.inputlimiter.min.js"></script>
                         <script src="assets/js/jquery.maskedinput.min.js"></script>
                         <script src="assets/js/bootstrap-tag.min.js"></script>
-
-                        <!-- ace scripts -->
                         <script src="assets/js/ace-elements.min.js"></script>
                         <script src="assets/js/ace.min.js"></script>
-
-                        <!-- inline scripts related to this page -->
                         <script type="text/javascript">
                         jQuery(function($) {
                             $('#id-disable-check').on('click', function() {
@@ -763,8 +630,6 @@
                                 $('.chosen-select').chosen({
                                     allow_single_deselect: true
                                 });
-                                //resize the chosen on window resize
-
                                 $(window)
                                     .off('resize.chosen')
                                     .on('resize.chosen', function() {
