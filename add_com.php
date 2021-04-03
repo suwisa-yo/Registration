@@ -37,6 +37,7 @@ date_default_timezone_set('Asia/Bangkok');
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="assets/css/regStyle.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
@@ -70,7 +71,14 @@ date_default_timezone_set('Asia/Bangkok');
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 </head>
-
+<style>
+.container {
+  width: 50%;
+  height: 0%;
+  margin: 5px auto;
+  background: ;
+}
+</style>
 <body class="no-skin">
     <div id="navbar" class="navbar navbar-default          ace-save-state">
         <div class="navbar-container ace-save-state" id="navbar-container">
@@ -481,93 +489,98 @@ date_default_timezone_set('Asia/Bangkok');
                             <small>(1.0)</small>
                         </strong>
                     </div>
-                    <form id="formRegister" name="formRegister" method="post"  action="save_computer.php" >
-                        <div class="form-group">
-                            <!--Serial number-->
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Serial number
-                            </label>
 
-                            <div class="col-sm-8">
-                                <input type="text" name="serial_computer" id="serial_computer" placeholder="Serial number"
-                                    class="col-xs-8 col-sm-4" />
 
-                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> Brand
-                                    &nbsp;</label>
-                                <input type="text" id="form-field-1" placeholder="Brand" class="col-xs-8 col-sm-4" />
+                    <form id="formRegister" name="formRegister" method="get"  action="save_computer.php" >
+              
+                  
+                   
+                        <div class="container">
+                            <div class="outer">
+                             <div class="inner">
+                                    <label class="col-sm-0 control-label no-padding-right"  > Serial number  &nbsp;&nbsp;&nbsp;</label>
+                                        <input type="text" name="serial_computer" id="serial_computer" placeholder="Serial number"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label class="col-sm-0"  > CPU &nbsp;</label>
+                                        <input type="text"  name="cpu_computer" id="cpu_computer" placeholder="CPU" />
+                            </div>
                             </div>
                         </div>
-                        <!--Serial number,Brand-->
+                         <div class="container">
+                            <div class="outer">
+                             <div class="inner">
+                                    <label class="col-sm-0 control-label no-padding-right"  > Main Memory</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" id="Main_Memory" name="Main_Memory" placeholder="Main Memory" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label > Storage </label>
+                                        <select name="storage_computer" id="storage_computer">
+                                             <?php
 
-                        <div class="form-group">
-                            <!--Main Memory-->
-    
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Main Memory
-                            </label>
-
-                            <div class="col-sm-8">
-                                <input type="text" id="form-field-1" placeholder="Main Memory"
-                                    class="col-xs-8 col-sm-4" />
-
-                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"
-                                    class="col-xs-8 col-sm-4"> Storage &nbsp;</label>
-                                <div class="col-xs-5 col-sm-4">
-
-
-                                    <!-- <select name="storage" id="storage">
-
-                                        <option value="SSD">SSD</option>
-
-                                        <option value="HHD">HHD</option>
-                                    </select> -->
-
-									<select name="storage" id="storage">
-									<?php
-
-										$q = "SELECT * FROM storage";
-										$qr = mysqli_query($conn,$q);
-
-										while($rs = mysqli_fetch_array($qr)){
-									?>
-
-									<option value="<?=$rs['storage_id']?>"><?=$rs['storage_name']?></option>
-									<?php } ?>    
-									</select>
-                                </div>
+                                                $q = "SELECT * FROM storage";
+                                                $qr = mysqli_query($conn,$q);
+                                                while($rs = mysqli_fetch_array($qr)){
+                                                ?>
+                                             <option value="<?=$rs['storage_name']?>"><?=$rs['storage_name']?></option>
+                                            <?php } ?>    
+                                        </select>      
+                                </div> 
                             </div>
                         </div>
                       
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Computer
-                                Name</label>
-                            <div class="col-sm-8">
-                                <input type="text" id="form-field-1" placeholder="Computer Name"
-                                    class="col-xs-8 col-sm-4" />
-                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> Assess No.
-                                    &nbsp;</label>
-                                <input type="text" id="form-field-1" placeholder="Assess No"
-                                    class="col-xs-8 col-sm-4" />
+                        <div class="container">
+                            <div class="outer">
+                             <div class="inner">
+                            <!--Serial number-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label class="col-sm-0 control-label no-padding-right" > Brand</label>&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="brand" id="brand" placeholder="Brand"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label class="col-sm-0 control-label no-padding-right"  >OS&nbsp;</label>
+                                <input type="text"  name="Os_computer" id="Os_computer" placeholder="OS"  />
+                                </div> 
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Start Date
-                            </label>
-                            <div class="col-sm-2">
-                                <div class="input-group">
-                                    <input class="form-control date-picker" id="id-date-picker-1" type="text"
-                                        data-date-format="dd-mm-yyyy" placeholder="dd/mm/yyyy" />
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar bigger-90"></i>
-                                    </span>
-                                </div>
+                        <div class="container">
+                            <div class="outer">
+                             <div class="inner">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="col-sm-0 control-label no-padding-right" > MS-Office</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="ms_office" id="ms_office" placeholder="MS-office"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="col-sm-0 control-label no-padding-right" > AnitVirus&nbsp;</label>
+                                <input type="text" name="anitVirus"  id="anitVirus" placeholder="AnitVirus"/>
+                                </div> 
                             </div>
-                            <p> <br> &nbsp;&nbsp; &nbsp;</br></p>
-                            <div class="clearfix form-actions">
+                        </div>
+
+                        <div class="container">
+                            <div class="outer">
+                             <div class="inner">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="col-sm-0 control-label no-padding-right" > Asset No.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="Asset_no"id="Asset_no" placeholder="OS"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="col-sm-0 control-label no-padding-right" >Responsible person&nbsp;</label>
+                                <input type="text"  name="responsible"  id="responsible" placeholder="Responsible"/>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="outer">
+                             <div class="inner">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="col-sm-0 control-label no-padding-right" >Section</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" name="section"id="section" placeholder="Section"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="col-sm-0 control-label no-padding-right" >Location&nbsp;</label>
+                                <input type="text"  name="location"  id="location" placeholder="Location"/>
+                                </div> 
+                            </div>
+                        </div>
+                        </div>
+                        <div class="container">
+                            <div class="outer">
+										<div class="col-sm-5">
+                                                <label>File<input type="file" name="filUpload" id="id-input-file-1" /></label>
+
+											</div>
+										</div>
+                                        </div>
                                 <div class="col-md-offset-5 col-md-9">
                                     <button class="btn btn-info"   type="submit" name="button" id="button" >
                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                         Submit
                                     </button>
-
                                     &nbsp; &nbsp; &nbsp;
                                     <button class="btn" type="reset">
                                         <i class="ace-icon fa fa-undo bigger-110"></i>
