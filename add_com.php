@@ -564,10 +564,10 @@ date_default_timezone_set('Asia/Bangkok');
     <td>&nbsp;</td>
     </tr>
   <tr>
-      <td  >File Browser</td>
-      <td ><label>
+      <!-- <td  >File Browser</td> -->
+      <!-- <td ><label>
         <input type="file" name="img" id="img"  required="required"/>
-      </label></td>
+      </label></td> -->
       <p></p>
     </tr>
     
