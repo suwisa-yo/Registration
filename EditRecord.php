@@ -44,8 +44,7 @@ date_default_timezone_set('Asia/Bangkok');
     <link rel="stylesheet" href="assets/css/regStyle.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
-   
+
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
@@ -76,7 +75,6 @@ date_default_timezone_set('Asia/Bangkok');
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 </head>
-
 <style>
 .container {
     width: 50%;
@@ -84,7 +82,6 @@ date_default_timezone_set('Asia/Bangkok');
     margin: 5px auto;
     background: ;
 }
-
 </style>
 
 <body class="no-skin">
@@ -493,91 +490,140 @@ date_default_timezone_set('Asia/Bangkok');
                         </strong>
                     </div>
 
+
+                    <form action="save_editrecord.php" method="post" enctype="multipart/form-data" name="" id="">
                     <?php
-//1. เชื่อมต่อ database: 
-include('db_reg.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
-//2. query ข้อมูลจากตาราง: 
-$perpage = 5;
- if (isset($_GET['page'])) {
- $page = $_GET['page'];
- } else {
- $page = 1;
- }
- 
- $start = ($page - 1) * $perpage;
- $sql = "SELECT * FROM computer limit {$start} , {$perpage} ";
+                        include('db_reg.php'); 
+                        $sql = "SELECT * FROM computer WHERE computer_id = '".$_GET["computer_id"]."' ";
+                        $result = mysqli_query($conn,$sql);
+                        $row = mysqli_fetch_array($result);
+                        if(!$objResult)
+                            {
+                            	echo "Not found computer_id=".$_GET["computer_id"];
+                            }   
+                        else
+                        {
+                    ?>
+                    <p>&nbsp;</p>
+                    <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                    <td>Serial number&nbsp;<input type="text" name="computer_id" id="computer_id"  value="<?php echo $row["computer_id"];?>"style="display: none"></td>
+                    <td><input type="text" name="serial_computer" id="serial_computer" placeholder="Serial number" value="<?php echo $row["serial_computer"];?>"></td>
+                    <td> CPU </td>
+                    <td> <input type="text" name="cpu_computer" id="cpu_computer" placeholder="CPU" value="<?php echo $row["cpu_computer"];?>" /></td>
+                    </tr>
+                    <tr>
+    <td>&nbsp;</td>
+    </tr>
+                    <tr>
+                    <td> Main Memory&nbsp;</td>      
+                    <td><input type="text" id="Main_Memory" name="Main_Memory" placeholder="Main Memory" value="<?php echo $row["Main_Memory"];?>"/></td>
+                    <td>Storage</td>
+                    <td>
+                        <select name="storage_computer" id="storage_computer"value="<?php echo $row["storage_computer"];?>">
+                                        <?php
 
-//3.เก็บข้อมูลที่ query ออกมาไว้ในตัวแปร result . 
-$result = mysqli_query($conn, $sql); 
-//4 . แสดงข้อมูลที่ query ออกมา โดยใช้ตารางในการจัดข้อมูล: 
-?>
-<form>
-<table id="example" class="table table-striped table-bordered" style="width:100%">
-<a href="add_com.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new computer</a>
-<thead>
-    <tr ><th>Serial Number</th><th>Cpu</th><th>Main Memory</th> <th>Storage</th> <th>Brand</th> <th>OS</th> <th>Ms-office</th> <th>Anti Virus</th> <th>Asset No.</th><th>Responsible</th><th>Section</th><th>Location</th><th> Edit/Delete </th></tr>  </thead>
-<?php while($row = mysqli_fetch_array($result)) { ?>
-    <tbody>
-    <tr>    
-    <td  width='20' ><?php echo $row["serial_computer"];?></td>
-    <td><?php echo $row["cpu_computer"];?></td> 
-    <td><?php echo $row["Main_Memory"];?></td> 
-    <td><?php echo $row["storage_computer"];?></td> 
-    <td><?php echo $row["brand"];?></td> 
-    <td><?php echo $row["Os_computer"];?></td> 
-    <td><?php echo $row["ms_office"];?></td> 
-    <td><?php echo $row["anti_virus"];?></td> 
-    <td><?php echo $row["Asset_no"];?></td> 
-    <td><?php echo $row["responsible"];?></td> 
-    <td><?php echo $row["section"];?></td> 
-    <td><?php echo $row["location"];?></td> 
+                                                $q = "SELECT * FROM storage";
+                                                $qr = mysqli_query($conn,$q);
+                                                while($rs = mysqli_fetch_array($qr)){
+                                                ?>
+                                        <option value="<?=$rs['storage_name']?>"><?=$rs['storage_name']?></option>
+                                        <?php } ?>
+                        </select>
+                    </td>
+                        </tr>
+                        <tr>
+                        <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                        <td>Brand</td>
+                                    <td><input type="text" name="brand" id="brand"placeholder="Brand" value="<?php echo $row["brand"];?>"/></td>  
+                       <td>OS</td>
+                                    <td><input type="text" name="Os_computer" id="Os_computer" placeholder="OS" value="<?php echo $row["Os_computer"];?>"/></td>
+                       </tr>
+                       <tr>
+                        <td>&nbsp;</td>
+                        </tr>
+                       <tr>
+                       <td>MS-Office</td>
+                                    <td><input type="text" name="ms_office" id="ms_office"value="<?php echo $row["ms_office"];?>"
+                                        placeholder="MS-office" /></td>
+                                    <td> AnitVirus</td>
+                                    <td><input type="text" name="anti_virus" id="anti_virus" placeholder="AnitVirus"value="<?php echo $row["ms_office"];?>" /></td>
 
+                     </tr>
+                     <tr>
+                    <td>&nbsp;</td>
+                    </tr>
+                     <tr>
+                     <td> Asset No.</td>
+                     <td><input type="text" name="Asset_no" id="Asset_no" placeholder="Asset No" value="<?php echo $row["Asset_no"];?>"/></td>
+                                    <td>Responsible person</td>
+                                    <td><input type="text" name="responsible" id="responsible" placeholder="Responsible" value="<?php echo $row["responsible"];?>" /></td>
+                     </tr> 
+                     <tr>
+                    <td>&nbsp;</td>
+                    </tr>
+                     <tr>
+                      <td>Section</td>
+                       <td><input type="text" name="section" id="section"placeholder="Section"  value="<?php echo $row["section"];?>"/></td>
+                       <td>Location</td>
+                      <td> <input type="text" name="location" id="location" placeholder="Location"  value="<?php echo $row["location"];?>" /></td>
+                             
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    </tr>
+  <tr>
+      <!-- <td  >File Browser</td> -->
+      <!-- <td ><label>
+        <input type="file" name="img" id="img"  required="required"/>
+      </label></td> -->
+      <p></p>
+    </tr>
     
-    <td width='10%'><a class='btn btn-info btn-xs' href="EditRecord.php?computer_id=<?php echo $row["computer_id"];?>">
-  <span class='glyphicon glyphicon-edit'></span> Edit</a> 
-   <a href="Delete_com.php?computer_id=<?php echo $row["computer_id"]; ?>" class='btn btn-danger btn-xs'>
-   <span class='glyphicon glyphicon-remove'></span> Del</a></td>
+    <tr>
+    <td>&nbsp;</td>
+    </tr>
+    <tr>
+    <td>&nbsp;</td>
+
+    <td>&nbsp;&nbsp;
+    <button class="btn btn-info" type="submit" name="button" id="button">
+                    <i class="ace-icon fa fa-check bigger-110"></i>
+                   
+                    Submit
+                </button>
+                <button class="btn" type="reset">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                    Reset
+                </button>
+      
+    </td>
+
+    <td>&nbsp;</td>
+            </tr>
+            <tr>
+            <td>
+            &nbsp; &nbsp;
+            </td>
+            </tr>
 
 
+             
+
+                      
+          
+    
+     
+        </table>
+        <?php
+}
 
 
-</tr>
-<?php } ?>
-
-        </tbody>
-</table>
-<?php
- $sql2 = "SELECT * FROM  computer ";
- $query2 = mysqli_query($conn, $sql2);
- $total_record = mysqli_num_rows($query2);
- $total_page = ceil($total_record / $perpage);
- ?>
- 
- <nav>
- <ul class="pagination">
- <li>
- <a href="list_com.php?page=1" aria-label="Previous">
- <span aria-hidden="true">&laquo;</span>
- </a>
- </li>
- <?php for($i=1;$i<=$total_page;$i++){ ?>
- <li><a href="list_com.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
- <?php } ?>
- <li>
- <a href="list_com.php?page=<?php echo $total_page;?>" aria-label="Next">
- <span aria-hidden="true">&raquo;</span>
- </a>
- </li>
- </ul>
- </nav>
- </div>
- </div>
- </div> <!-- /container -->
- <script src="bootstrap/js/bootstrap.min.js"></script>
+?>
 </form>
-
-
-       
+        <p> <br>&nbsp; &nbsp;</br></p>
         <div class="footer">
             <div class="footer-inner">
                 <div class="footer-content">
@@ -824,11 +870,295 @@ $result = mysqli_query($conn, $sql);
         //{type: 'file', name: 'hello.txt'}
         //]);
 
-        $(document).ready(function() {
-    $('#example').DataTable();
-} );
+
+
+
+        //dynamically change allowed formats by changing allowExt && allowMime function
+        $('#id-file-format').removeAttr('checked').on('change', function() {
+            var whitelist_ext, whitelist_mime;
+            var btn_choose
+            var no_icon
+            if (this.checked) {
+                btn_choose = "Drop images here or click to choose";
+                no_icon = "ace-icon fa fa-picture-o";
+
+                whitelist_ext = ["jpeg", "jpg", "png", "gif", "bmp"];
+                whitelist_mime = ["image/jpg", "image/jpeg", "image/png",
+                    "image/gif", "image/bmp"
+                ];
+            } else {
+                btn_choose = "Drop files here or click to choose";
+                no_icon = "ace-icon fa fa-cloud-upload";
+
+                whitelist_ext = null; //all extensions are acceptable
+                whitelist_mime = null; //all mimes are acceptable
+            }
+            var file_input = $('#id-input-file-3');
+            file_input
+                .ace_file_input('update_settings', {
+                    'btn_choose': btn_choose,
+                    'no_icon': no_icon,
+                    'allowExt': whitelist_ext,
+                    'allowMime': whitelist_mime
+                })
+            file_input.ace_file_input('reset_input');
+
+            file_input
+                .off('file.error.ace')
+                .on('file.error.ace', function(e, info) {
+                    //console.log(info.file_count);//number of selected files
+                    //console.log(info.invalid_count);//number of invalid files
+                    //console.log(info.error_list);//a list of errors in the following format
+
+                    //info.error_count['ext']
+                    //info.error_count['mime']
+                    //info.error_count['size']
+
+                    //info.error_list['ext']  = [list of file names with invalid extension]
+                    //info.error_list['mime'] = [list of file names with invalid mimetype]
+                    //info.error_list['size'] = [list of file names with invalid size]
+
+
+                    /**
+                    if( !info.dropped ) {
+                    	//perhapse reset file field if files have been selected, and there are invalid files among them
+                    	//when files are dropped, only valid files will be added to our file array
+                    	e.preventDefault();//it will rest input
+                    }
+                    */
+
+
+                    //if files have been selected (not dropped), you can choose to reset input
+                    //because browser keeps all selected files anyway and this cannot be changed
+                    //we can only reset file field to become empty again
+                    //on any case you still should check files with your server side script
+                    //because any arbitrary file can be uploaded by user and it's not safe to rely on browser-side measures
+                });
+
+
+            /**
+            file_input
+            .off('file.preview.ace')
+            .on('file.preview.ace', function(e, info) {
+            	console.log(info.file.width);
+            	console.log(info.file.height);
+            	e.preventDefault();//to prevent preview
+            });
+            */
+
+        });
+
+        $('#spinner1').ace_spinner({
+                value: 0,
+                min: 0,
+                max: 200,
+                step: 10,
+                btn_up_class: 'btn-info',
+                btn_down_class: 'btn-info'
+            })
+            .closest('.ace-spinner')
+            .on('changed.fu.spinbox', function() {
+                //console.log($('#spinner1').val())
+            });
+        $('#spinner2').ace_spinner({
+            value: 0,
+            min: 0,
+            max: 10000,
+            step: 100,
+            touch_spinner: true,
+            icon_up: 'ace-icon fa fa-caret-up bigger-110',
+            icon_down: 'ace-icon fa fa-caret-down bigger-110'
+        });
+        $('#spinner3').ace_spinner({
+            value: 0,
+            min: -100,
+            max: 100,
+            step: 10,
+            on_sides: true,
+            icon_up: 'ace-icon fa fa-plus bigger-110',
+            icon_down: 'ace-icon fa fa-minus bigger-110',
+            btn_up_class: 'btn-success',
+            btn_down_class: 'btn-danger'
+        });
+        $('#spinner4').ace_spinner({
+            value: 0,
+            min: -100,
+            max: 100,
+            step: 10,
+            on_sides: true,
+            icon_up: 'ace-icon fa fa-plus',
+            icon_down: 'ace-icon fa fa-minus',
+            btn_up_class: 'btn-purple',
+            btn_down_class: 'btn-purple'
+        });
+
+        //$('#spinner1').ace_spinner('disable').ace_spinner('value', 11);
+        //or
+        //$('#spinner1').closest('.ace-spinner').spinner('disable').spinner('enable').spinner('value', 11);//disable, enable or change value
+        //$('#spinner1').closest('.ace-spinner').spinner('value', 0);//reset to 0
+
+
+        //datepicker plugin
+        //link
+        $('.date-picker').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            })
+            //show datepicker when clicking on the icon
+            .next().on(ace.click_event, function() {
+                $(this).prev().focus();
+            });
+
+        //or change it into a date range picker
+        $('.input-daterange').datepicker({
+            autoclose: true
+        });
+
+
+        //to translate the daterange picker, please copy the "examples/daterange-fr.js" contents here before initialization
+        $('input[name=date-range-picker]').daterangepicker({
+                'applyClass': 'btn-sm btn-success',
+                'cancelClass': 'btn-sm btn-default',
+                locale: {
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                }
+            })
+            .prev().on(ace.click_event, function() {
+                $(this).next().focus();
+            });
+
+
+        $('#timepicker1').timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            disableFocus: true,
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down'
+            }
+        }).on('focus', function() {
+            $('#timepicker1').timepicker('showWidget');
+        }).next().on(ace.click_event, function() {
+            $(this).prev().focus();
+        });
+
+
+
+
+        if (!ace.vars['old_ie']) $('#date-timepicker1').datetimepicker({
+            //format: 'MM/DD/YYYY h:mm:ss A',//use this option to display seconds
+            icons: {
+                time: 'fa fa-clock-o',
+                date: 'fa fa-calendar',
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-arrows ',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            }
+        }).next().on(ace.click_event, function() {
+            $(this).prev().focus();
+        });
+
+
+        $('#colorpicker1').colorpicker();
+        //$('.colorpicker').last().css('z-index', 2000);//if colorpicker is inside a modal, its z-index should be higher than modal'safe
+
+        $('#simple-colorpicker-1').ace_colorpicker();
+        //$('#simple-colorpicker-1').ace_colorpicker('pick', 2);//select 2nd color
+        //$('#simple-colorpicker-1').ace_colorpicker('pick', '#fbe983');//select #fbe983 color
+        //var picker = $('#simple-colorpicker-1').data('ace_colorpicker')
+        //picker.pick('red', true);//insert the color if it doesn't exist
+
+
+        $(".knob").knob();
+
+
+        var tag_input = $('#form-field-tags');
+        try {
+            tag_input.tag({
+                placeholder: tag_input.attr('placeholder'),
+                //enable typeahead by specifying the source array
+                source: ace.vars[
+                    'US_STATES'], //defined in ace.js >> ace.enable_search_ahead
+                /**
+                //or fetch data from database, fetch those that match "query"
+                source: function(query, process) {
+                  $.ajax({url: 'remote_source.php?q='+encodeURIComponent(query)})
+                  .done(function(result_items){
+                	process(result_items);
+                  });
+                }
+                */
+            })
+
+            //programmatically add/remove a tag
+            var $tag_obj = $('#form-field-tags').data('tag');
+            $tag_obj.add('Programmatically Added');
+
+            var index = $tag_obj.inValues('some tag');
+            $tag_obj.remove(index);
+        } catch (e) {
+            //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
+            tag_input.after('<textarea id="' + tag_input.attr('id') + '" name="' + tag_input
+                    .attr('name') + '" rows="3">' + tag_input.val() + '</textarea>')
+                .remove();
+            //autosize($('#form-field-tags'));
+        }
+
+
+        /////////
+        $('#modal-form input[type=file]').ace_file_input({
+            style: 'well',
+            btn_choose: 'Drop files here or click to choose',
+            btn_change: null,
+            no_icon: 'ace-icon fa fa-cloud-upload',
+            droppable: true,
+            thumbnail: 'large'
+        })
+
+        //chosen plugin inside a modal will have a zero width because the select element is originally hidden
+        //and its width cannot be determined.
+        //so we set the width after modal is show
+        $('#modal-form').on('shown.bs.modal', function() {
+            if (!ace.vars['touch']) {
+                $(this).find('.chosen-container').each(function() {
+                    $(this).find('a:first-child').css('width', '210px');
+                    $(this).find('.chosen-drop').css('width', '210px');
+                    $(this).find('.chosen-search input').css('width',
+                        '200px');
+                });
+            }
+        })
+        /**
+        //or you can activate the chosen plugin after modal is shown
+        //this way select element becomes visible with dimensions and chosen works as expected
+        $('#modal-form').on('shown', function () {
+        	$(this).find('.modal-chosen').chosen();
+        })
+        */
+
+
+
+        $(document).one('ajaxloadstart.page', function(e) {
+            autosize.destroy('textarea[class*=autosize]')
+
+            $('.limiterBox,.autosizejs').remove();
+            $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu')
+                .remove();
+        });
+
+    });
     </script>
-    
 </body>
 
 </html>
+<?
+
+{mysqli_close();
+}
+?>
