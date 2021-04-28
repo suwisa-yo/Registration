@@ -1,4 +1,5 @@
 <?php require_once('db_reg.php'); ?>
+
 <?php
 date_default_timezone_set('Asia/Bangkok');
 	session_start();
@@ -189,60 +190,55 @@ date_default_timezone_set('Asia/Bangkok');
                 </li>
 
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-desktop"></i>
-                        <span class="menu-text">
-                            Computer
-                        </span>
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-desktop"></i>
+							<span class="menu-text">
+								Computer
+							</span>
 
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
 
-                    <b class="arrow"></b>
+						<b class="arrow"></b>
 
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="#" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-caret-right"></i>
+						<ul class="submenu">
+							<li class="">
+								<a href="list_com.php" class="dropdown-toggle">
+									<i class="menu-icon fa fa-caret-right"></i>
 
-                                Add Computer
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
+                                    Computer
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
 
-                            <b class="arrow"></b>
+								<b class="arrow"></b>
+								<ul class="submenu">
+									<li class="">
+										<a href="list_com.php">
+											<i class="menu-icon fa fa-caret-right"></i>
+											List Computer
+										</a>
 
-                            <ul class="submenu">
-                                <li class="">
-                                    <a href="add_com.php">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        Computer
-                                    </a>
+										<b class="arrow"></b>
+									</li>
 
-                                    <b class="arrow"></b>
-                                </li>
+									
+								</ul>
+								<ul class="submenu">
+									<li class="">
+										<a href="add_com.php">
+											<i class="menu-icon fa fa-caret-right"></i>
+											Computer
+										</a>
 
+										<b class="arrow"></b>
+									</li>
 
-                            </ul>
-                        </li>
-                        <li class="">
-                            <a href="list_com.php" >
-                                <i class="menu-icon fa fa-caret-right"></i>
+									
+								</ul>
+								
+							</li>
+                           
 
-                                List Computer
-                               
-                            </a>
-
-                            <b class="arrow"></b>
-
-                            <ul class="submenu">
-                                <li class="">
-
-                                    <b class="arrow"></b>
-                                </li>
-
-
-                            </ul>
-                        </li>
 
                         <li class="">
 
@@ -488,13 +484,12 @@ date_default_timezone_set('Asia/Bangkok');
                             version
                             <small>(1.0)</small>
                         </strong>
-                    </div>
 
-
-                    <form action="add_file_db.php" method="post" enctype="multipart/form-data" name="upfile" id="upfile">
+<form action="add_file_db.php" method="post" enctype="multipart/form-data" name="upfile" id="upfile">
                     
                     <p>&nbsp;</p>
                     <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+                 
                     <tr>
                     <td>Serial number&nbsp;</td>
                     <td><input type="text" name="serial_computer" id="serial_computer"placeholder="Serial number" /></td>
@@ -519,34 +514,48 @@ date_default_timezone_set('Asia/Bangkok');
                                         <option value="<?=$rs['storage_name']?>"><?=$rs['storage_name']?></option>
                                         <?php } ?>
                         </select>
+                        <p></p>
+                        <input type="text" name="storage_detail" id="storage_detail"placeholder="Detail" />
                     </td>
+                 
+             
                         </tr>
                         <tr>
                         <td>&nbsp;</td>
                         </tr>
                         <tr>
+                        <td>Type</td>
+                                    <td><input type="text" name="type_com" id="type_com"placeholder="Type" /></td>  
+                        
                         <td>Brand</td>
                                     <td><input type="text" name="brand" id="brand"placeholder="Brand" /></td>  
-                       <td>OS</td>
-                                    <td><input type="text" name="Os_computer" id="Os_computer" placeholder="OS" /></td>
                        </tr>
                        <tr>
                         <td>&nbsp;</td>
                         </tr>
                        <tr>
+                       <td>OS</td>
+                                    <td><input type="text" name="Os_computer" id="Os_computer" placeholder="OS" /></td>
                        <td>MS-Office</td>
                                     <td><input type="text" name="ms_office" id="ms_office"
                                         placeholder="MS-office" /></td>
-                                    <td> AnitVirus</td>
-                                    <td><input type="text" name="anti_virus" id="anti_virus" placeholder="AnitVirus" /></td>
 
                      </tr>
                      <tr>
                     <td>&nbsp;</td>
                     </tr>
-                     <tr>
+                    <tr>
+                    <td> AnitVirus</td>
+                                    <td><input type="text" name="anti_virus" id="anti_virus" placeholder="AnitVirus" /></td>
                      <td> Asset No.</td>
                      <td><input type="text" name="Asset_no" id="Asset_no" placeholder="Asset No" /></td>
+                     </tr> 
+                     <tr>
+                    <td>&nbsp;</td>
+                    </tr>
+                     <tr>
+                     <td> Computer Name</td>
+                     <td><input type="text" name="computer_name" id="computer_name" placeholder="Computer Name" /></td>
                                     <td>Responsible person</td>
                                     <td><input type="text" name="responsible" id="responsible" placeholder="Responsible" /></td>
                      </tr> 
@@ -577,7 +586,7 @@ date_default_timezone_set('Asia/Bangkok');
     <tr>
     <td>&nbsp;</td>
 
-    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button class="btn btn-info" type="submit" name="button" id="button">
                     <i class="ace-icon fa fa-check bigger-110"></i>
                    
@@ -596,13 +605,6 @@ date_default_timezone_set('Asia/Bangkok');
             &nbsp; &nbsp;
             </td>
             </tr>
-
-
-             
-
-                      
-          
-    
      
         </table>
 </form>

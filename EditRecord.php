@@ -587,17 +587,14 @@ date_default_timezone_set('Asia/Bangkok');
     </tr>
     <tr>
     <td>&nbsp;</td>
-
+    <td>&nbsp;</td>
     <td>&nbsp;&nbsp;
     <button class="btn btn-info" type="submit" name="button" id="button">
                     <i class="ace-icon fa fa-check bigger-110"></i>
                    
                     Submit
                 </button>
-                <button class="btn" type="reset">
-                    <i class="ace-icon fa fa-undo bigger-110"></i>
-                    Reset
-                </button>
+       
       
     </td>
 

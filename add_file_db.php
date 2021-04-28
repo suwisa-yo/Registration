@@ -23,11 +23,14 @@ include('db_reg.php');  //ไฟล์เชื่อมต่อกับ datab
 // $newname = $date.$numrand.$type;
 // // $path_copy=$path.$newname;
 // $path_link="images/".$newname;
+
 $serial_computer=$_POST['serial_computer'];
 $cpu_computer=$_POST['cpu_computer'];
 $Main_Memory=$_POST['Main_Memory'];
 $storage_computer=$_POST['storage_computer'];
+$storage_detail=$_POST['storage_detail'];
 $brand=$_POST['brand'];
+$type_com=$_POST['type_com'];
 $Os_computer=$_POST['Os_computer'];
 $ms_office = $_POST['ms_office'];
 $anti_virus = $_POST['anti_virus'];       
@@ -41,8 +44,8 @@ $location= $_POST['location'];
 	// เพิ่มไฟล์เข้าไปในตาราง uploadfile
 	// $sql = "INSERT INTO computer (serial_computer,cpu_computer,Main_Memory,storage_computer,brand,Os_computer,ms_office,anti_virus,Asset_no,responsible,section,location) ,img
 	// 	VALUES('$serial_computer','$cpu_computer','$Main_Memory','$storage_computer','$brand','$Os_computer','$ms_office','$anti_virus','$Asset_no','$responsible','$section','$location','$newname')";
-	$sql = "INSERT INTO computer (serial_computer,cpu_computer,Main_Memory,storage_computer,brand,Os_computer,ms_office,anti_virus,Asset_no,responsible,section,location) 
-		VALUES('$serial_computer','$cpu_computer','$Main_Memory','$storage_computer','$brand','$Os_computer','$ms_office','$anti_virus','$Asset_no','$responsible','$section','$location')";
+	$sql = "INSERT INTO computer (serial_computer,cpu_computer,Main_Memory,storage_computer,storage_detail,brand,type_com,Os_computer,ms_office,anti_virus,Asset_no,responsible,section,location) 
+		VALUES('$serial_computer','$cpu_computer','$Main_Memory','$storage_computer','$storage_detail','$brand','$type_com','$Os_computer','$ms_office','$anti_virus','$Asset_no','$responsible','$section','$location')";
 		
 		$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
 	

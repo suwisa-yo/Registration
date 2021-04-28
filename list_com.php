@@ -75,6 +75,7 @@ date_default_timezone_set('Asia/Bangkok');
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+        
 </head>
 
 <style>
@@ -192,60 +193,54 @@ date_default_timezone_set('Asia/Bangkok');
                 </li>
 
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-desktop"></i>
-                        <span class="menu-text">
-                            Computer
-                        </span>
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-desktop"></i>
+							<span class="menu-text">
+								Computer
+							</span>
 
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
 
-                    <b class="arrow"></b>
+						<b class="arrow"></b>
 
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="#" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-caret-right"></i>
+						<ul class="submenu">
+							<li class="">
+								<a href="#" class="dropdown-toggle">
+									<i class="menu-icon fa fa-caret-right"></i>
 
-                                Add Computer
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
+								Computer
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
 
-                            <b class="arrow"></b>
+								<b class="arrow"></b>
+								<ul class="submenu">
+									<li class="">
+										<a href="list_com.php">
+											<i class="menu-icon fa fa-caret-right"></i>
+											List Computer
+										</a>
 
-                            <ul class="submenu">
-                                <li class="">
-                                    <a href="add_com.php">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        Computer
-                                    </a>
+										<b class="arrow"></b>
+									</li>
 
-                                    <b class="arrow"></b>
-                                </li>
+									
+								</ul>
+								<ul class="submenu">
+									<li class="">
+										<a href="add_com.php">
+											<i class="menu-icon fa fa-caret-right"></i>
+											Computer
+										</a>
 
+										<b class="arrow"></b>
+									</li>
 
-                            </ul>
-                        </li>
-                        <li class="">
-                            <a href="list_com.php" >
-                                <i class="menu-icon fa fa-caret-right"></i>
-
-                                List Computer
-                               
-                            </a>
-
-                            <b class="arrow"></b>
-
-                            <ul class="submenu">
-                                <li class="">
-
-                                    <b class="arrow"></b>
-                                </li>
-
-
-                            </ul>
-                        </li>
+									
+								</ul>
+								
+							</li>
+                           
 
                         <li class="">
 
@@ -497,7 +492,7 @@ date_default_timezone_set('Asia/Bangkok');
 //1. เชื่อมต่อ database: 
 include('db_reg.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
 //2. query ข้อมูลจากตาราง: 
-$perpage = 5;
+$perpage = 10;
  if (isset($_GET['page'])) {
  $page = $_GET['page'];
  } else {
@@ -510,37 +505,46 @@ $perpage = 5;
 //3.เก็บข้อมูลที่ query ออกมาไว้ในตัวแปร result . 
 $result = mysqli_query($conn, $sql); 
 //4 . แสดงข้อมูลที่ query ออกมา โดยใช้ตารางในการจัดข้อมูล: 
+
+$number = 0;
+$count_i = 1;
 ?>
+
 <form>
 <table id="example" class="table table-striped table-bordered" style="width:100%">
 <a href="add_com.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new computer</a>
 <thead>
-    <tr ><th>Serial Number</th><th>Cpu</th><th>Main Memory</th> <th>Storage</th> <th>Brand</th> <th>OS</th> <th>Ms-office</th> <th>Anti Virus</th> <th>Asset No.</th><th>Responsible</th><th>Section</th><th>Location</th><th> Edit/Delete </th></tr>  </thead>
+    <tr ><th>No</th><th>Serial Number</th><th>Cpu</th><th>Main Memory</th> <th>Storage</th> <th>Detail</th> <th>Brand</th><th>Type</th>  <th>OS</th> <th>Ms-office</th> <th>Anti Virus</th> <th>Asset No.</th><th>Computer Name</th><th>Responsible</th><th>Section</th><th>Location</th><th> Edit/Delete </th></tr>  </thead>
 <?php while($row = mysqli_fetch_array($result)) { ?>
     <tbody>
-    <tr>    
-    <td  width='20' ><?php echo $row["serial_computer"];?></td>
-    <td><?php echo $row["cpu_computer"];?></td> 
-    <td><?php echo $row["Main_Memory"];?></td> 
-    <td><?php echo $row["storage_computer"];?></td> 
-    <td><?php echo $row["brand"];?></td> 
-    <td><?php echo $row["Os_computer"];?></td> 
-    <td><?php echo $row["ms_office"];?></td> 
-    <td><?php echo $row["anti_virus"];?></td> 
-    <td><?php echo $row["Asset_no"];?></td> 
-    <td><?php echo $row["responsible"];?></td> 
-    <td><?php echo $row["section"];?></td> 
-    <td><?php echo $row["location"];?></td> 
+    <tr>
 
-    
+    <td >
+        
+        <?php echo $number = ($count_i)+($perpage*($page-1)); 
+
+         $count_i++;?>
+    </td>
+
+    <td ><?php echo $row["serial_computer"];?></td>
+    <td ><?php echo $row["cpu_computer"];?></td> 
+    <td  width='30'><?php echo $row["Main_Memory"];?></td> 
+    <td ><?php echo $row["storage_computer"];?></td> 
+    <td ><?php echo $row["storage_detail"];?></td> 
+    <td ><?php echo $row["brand"];?></td> 
+    <td ><?php echo $row["type_com"];?></td> 
+    <td> <?php echo $row["Os_computer"];?></td> 
+    <td ><?php echo $row["ms_office"];?></td> 
+    <td width='30'><?php echo $row["anti_virus"];?></td> 
+    <td ><?php echo $row["Asset_no"];?></td> 
+    <td ><?php echo $row["computer_name"];?></td> 
+    <td ><?php echo $row["responsible"];?></td> 
+    <td width='30'><?php echo $row["section"];?></td> 
+    <td ><?php echo $row["location"];?></td> 
     <td width='10%'><a class='btn btn-info btn-xs' href="EditRecord.php?computer_id=<?php echo $row["computer_id"];?>">
   <span class='glyphicon glyphicon-edit'></span> Edit</a> 
    <a href="Delete_com.php?computer_id=<?php echo $row["computer_id"]; ?>" class='btn btn-danger btn-xs'>
    <span class='glyphicon glyphicon-remove'></span> Del</a></td>
-
-
-
-
 </tr>
 <?php } ?>
 
