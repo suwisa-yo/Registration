@@ -4,14 +4,14 @@
 	if($_SESSION['username'] == "")
 	{
 		echo "Please Login!";
-		exit();
+	exit();
 	}
-
 	if($_SESSION['status'] != "user")
 	{
 		echo "This page for User only!";
 		exit();
 	}	
+
 	
 	
 ?>
